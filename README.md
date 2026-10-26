@@ -6,7 +6,10 @@ install prompts). Files are served with GitHub Pages:
     https://cmuq-client-services.github.io/assets/icons/<name>.png
 
 ## Layout
-- `icons/` - application icons, 512x512 PNG, named after the Installomator label (for example `firefox.png`).
+- `icons/` - application icons, PNG, named after the Installomator label of the app (for example `firefoxpkg.png`, `visualstudiocode.png`).
+  Apps that Installomator has no label for (macOS system apps, in-house tools) use a lowercase-hyphen name. A `-2021` suffix marks an older artwork version.
+- `setup-manager/` - banners, app icons and instruction screenshots used by the Jamf Setup Manager / Setup Checklist configuration.
+- `branding/` - CMU-Q logo.
 
 ## Notes
 - All product names, logos and icons belong to their respective owners and are used here only to identify the
