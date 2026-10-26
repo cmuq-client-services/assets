@@ -1,0 +1,2369 @@
+{
+  "title": "Setup Checklist Configuration (com.jamf.setupchecklist)",
+  "description": "Configuration profile schema for Setup Checklist - a macOS first-login experience app for Jamf-managed devices",
+  "__version": "1.1",
+  "__preferencedomain": "com.jamf.setupchecklist",
+  "options": {
+    "remove_empty_properties": true
+  },
+  "defaultProperties": [
+    "icon",
+    "title",
+    "message",
+    "steps"
+  ],
+  "properties": {
+    "DEBUG": {
+      "type": "boolean",
+      "title": "Debug Mode",
+      "description": "When enabled, the app will not perform actions that change settings. Other apps are not hidden and icon always shows in Dock.",
+      "default": false,
+      "property_order": 1,
+      "links": [
+        {
+          "rel": "Detailed documentation: Debug Mode",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#debug-mode"
+        }
+      ]
+    },
+    "icon": {
+      "title": "Icon",
+      "description": "Icon used at the top of the sidebar (90x90 pixels, 180x180 @2x). Can be an image source: path, url, name:, symbol:, or bundle identifier",
+      "property_order": 5,
+      "oneOf": [
+        {
+          "type": "string",
+          "title": "String"
+        },
+        {
+          "type": "object",
+          "title": "Localized",
+          "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+          "properties": {
+            "en": {
+              "type": "string",
+              "title": "English (default)"
+            }
+          },
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      ],
+      "links": [
+        {
+          "rel": "Detailed documentation: Icon",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#icon"
+        },
+        {
+          "rel": "Image Sources",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/ImageSources.md"
+        }
+      ]
+    },
+    "title": {
+      "title": "Title",
+      "description": "Title shown at the top of the sidebar, under the icon",
+      "default": "Setup Checklist",
+      "property_order": 10,
+      "oneOf": [
+        {
+          "type": "string",
+          "title": "String"
+        },
+        {
+          "type": "object",
+          "title": "Localized",
+          "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+          "properties": {
+            "en": {
+              "type": "string",
+              "title": "English (default)"
+            }
+          },
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      ],
+      "links": [
+        {
+          "rel": "Detailed documentation: Title",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#title"
+        }
+      ]
+    },
+    "message": {
+      "title": "Message",
+      "description": "Short message shown under the icon and title in the sidebar (supports Markdown)",
+      "default": "Start here to set up your Mac.",
+      "property_order": 15,
+      "oneOf": [
+        {
+          "type": "string",
+          "title": "String"
+        },
+        {
+          "type": "object",
+          "title": "Localized",
+          "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+          "properties": {
+            "en": {
+              "type": "string",
+              "title": "English (default)"
+            }
+          },
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      ],
+      "links": [
+        {
+          "rel": "Detailed documentation: Message",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#message"
+        },
+        {
+          "rel": "Markdown Support",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Extras/Markdown.md"
+        }
+      ]
+    },
+    "accentColor": {
+      "type": "string",
+      "title": "Accent Color",
+      "description": "Accent color for buttons, progress bar, and UI elements. Format: #RRGGBB or ##colorname (e.g., ##green, ##blue)",
+      "property_order": 20,
+      "links": [
+        {
+          "rel": "Detailed documentation: Accent Color",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#accent-color"
+        },
+        {
+          "rel": "Defining Colors",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/DefiningColors.md"
+        }
+      ]
+    },
+    "hideOtherApps": {
+      "type": "boolean",
+      "title": "Hide Other Apps",
+      "description": "Controls whether other apps are hidden at launch (not hidden in DEBUG mode)",
+      "default": true,
+      "property_order": 25,
+      "links": [
+        {
+          "rel": "Detailed documentation: Hide Other Apps",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#hide-other-apps"
+        }
+      ]
+    },
+    "finishedScript": {
+      "type": "string",
+      "title": "Finished Script",
+      "description": "Script to be run when user clicks Done",
+      "property_order": 29,
+      "links": [
+        {
+          "rel": "Detailed documentation: Finished Script",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#finished-script"
+        }
+      ]
+    },
+    "openWhenFinished": {
+      "type": "string",
+      "title": "Open When Finished",
+      "description": "Item to open when user clicks Done (absolute path, URL scheme, or bundle identifier)",
+      "property_order": 30,
+      "links": [
+        {
+          "rel": "Detailed documentation: Open When Finished",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#open-when-finished"
+        }
+      ]
+    },
+    "openWhenFinishedHide": {
+      "type": "boolean",
+      "title": "Open When Finished Hide",
+      "description": "Determines whether the item designated in `openWhenFinished` is launched hidden.",
+      "default": false,
+      "property_order": 31,
+      "links": [
+        {
+          "rel": "Detailed documentation: Open When Finished Hide",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#open-when-finished-hide"
+        }
+      ]
+    },
+    "showIconInDock": {
+      "type": "boolean",
+      "title": "Show Icon in Dock",
+      "description": "Controls whether app icon is shown in the Dock (always shows in DEBUG mode)",
+      "default": true,
+      "property_order": 35,
+      "links": [
+        {
+          "rel": "Detailed documentation: Show Icon in Dock",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#show-icon-in-dock"
+        }
+      ]
+    },
+    "allowQuit": {
+      "type": "boolean",
+      "title": "Allow Quit",
+      "description": "Controls whether the user can quit the app. When false, the Quit menu item, its Cmd-Q shortcut, and the window's close button are disabled so the user cannot leave before completing the workflow. The app still quits automatically when all steps are completed.",
+      "default": true,
+      "property_order": 36,
+      "links": [
+        {
+          "rel": "Detailed documentation: Allow Quit",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#allow-quit"
+        }
+      ]
+    },
+    "background": {
+      "type": "string",
+      "title": "Background",
+      "description": "Full-screen background shown when a step's windowPosition is 'focus'. Can be an image source: path, url, name:, symbol:, or 'wallpaper' for the current desktop picture",
+      "default": "wallpaper",
+      "property_order": 37,
+      "links": [
+        {
+          "rel": "Detailed documentation: Background",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#background"
+        },
+        {
+          "rel": "Image Sources",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/ImageSources.md"
+        }
+      ]
+    },
+    "blur": {
+      "type": "boolean",
+      "title": "Blur",
+      "description": "Applies a blur effect to the full-screen background shown when a step's windowPosition is 'focus'",
+      "default": false,
+      "property_order": 38,
+      "links": [
+        {
+          "rel": "Detailed documentation: Blur",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#blur"
+        }
+      ]
+    },
+    "scriptLogging": {
+      "type": "boolean",
+      "title": "Script Step Logging",
+      "description": "When enabled, script execution and output is written to ~/Library/Logs/SetupChecklist-Scripts.log",
+      "default": false,
+      "property_order": 40,
+      "links": [
+        {
+          "rel": "Detailed documentation: Script Logging",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#script-step-logging"
+        }
+      ]
+    },
+    "steps": {
+      "type": "array",
+      "title": "Steps",
+      "description": "Array of step configurations defining the workflow (REQUIRED)",
+      "property_order": 100,
+      "links": [
+        {
+          "rel": "Detailed documentation: Steps",
+          "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#steps"
+        }
+      ],
+      "items": {
+        "type": "object",
+        "title": "Step",
+        "anyOf": [
+          {
+            "title": "-Select Step Type-",
+            "type": "object",
+            "defaultProperties": [
+              "kind",
+              "identifier",
+              "title"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "title": "Kind",
+                "description": "Type of step (REQUIRED)",
+                "enum": [
+                  "message",
+                  "wallpaper",
+                  "defaultApp",
+                  "open",
+                  "screensharing",
+                  "dock",
+                  "script",
+                  "agreement"
+                ],
+                "property_order": 1,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Kind",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#the-kind-of-step"
+                  }
+                ]
+              },
+              "identifier": {
+                "type": "string",
+                "title": "Identifier",
+                "description": "Unique identifier for this step (REQUIRED)",
+                "property_order": 2,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Identifier",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#identifier"
+                  }
+                ]
+              },
+              "title": {
+                "title": "Title",
+                "description": "Title shown in sidebar and step view (localizable)",
+                "property_order": 5,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Title",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#title-1"
+                  }
+                ]
+              },
+              "message": {
+                "title": "Message",
+                "description": "Longer description with instructions (supports Markdown, localizable)",
+                "property_order": 10,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Message",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#message-1"
+                  }
+                ]
+              },
+              "icon": {
+                "title": "Icon",
+                "description": "Icon for the step (36x36 pixels, 72x72 @2x). Image source: path, url, name:, symbol:, or bundle identifier",
+                "property_order": 15,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Icon",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#icon-1"
+                  }
+                ]
+              },
+              "windowPosition": {
+                "type": "string",
+                "title": "Window Position",
+                "enum": [
+                  "center",
+                  "left",
+                  "right",
+                  "focus"
+                ],
+                "default": "center",
+                "property_order": 30,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Window Position",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#window-position"
+                  }
+                ]
+              },
+              "showSidebar": {
+                "type": "boolean",
+                "title": "Show Sidebar",
+                "description": "Overrides the sidebar visibility that would otherwise be determined by windowPosition for this step",
+                "property_order": 31,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Show Sidebar",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#show-sidebar"
+                  }
+                ]
+              },
+              "background": {
+                "type": "string",
+                "title": "Background",
+                "description": "Overrides the top-level background for this step. Can be an image source: path, url, name:, symbol:, or 'wallpaper' for the current desktop picture",
+                "default": "wallpaper",
+                "property_order": 32,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Background",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#background"
+                  },
+                  {
+                    "rel": "Image Sources",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/ImageSources.md"
+                  }
+                ]
+              },
+              "blur": {
+                "type": "boolean",
+                "title": "Blur",
+                "description": "Overrides the top-level blur setting for this step",
+                "default": false,
+                "property_order": 33,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Blur",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#blur"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "identifier"
+            ]
+          },
+          {
+            "title": "Message Step",
+            "type": "object",
+            "defaultProperties": [
+              "kind",
+              "identifier",
+              "title",
+              "message",
+              "icon"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "title": "Kind",
+                "enum": [
+                  "message"
+                ],
+                "default": "message",
+                "property_order": 1
+              },
+              "identifier": {
+                "type": "string",
+                "title": "Identifier",
+                "description": "Unique identifier (REQUIRED)",
+                "property_order": 2
+              },
+              "title": {
+                "title": "Title",
+                "property_order": 5,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "message": {
+                "title": "Message",
+                "description": "Message text (supports Markdown)",
+                "property_order": 10,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "icon": {
+                "title": "Icon",
+                "property_order": 15,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "image": {
+                "type": "string",
+                "title": "Image",
+                "description": "Image shown at top of step area",
+                "property_order": 20,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Image",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#image"
+                  }
+                ]
+              },
+              "iconColor": {
+                "type": "string",
+                "title": "Icon Color",
+                "description": "Highlight color for SF Symbol icons",
+                "property_order": 22,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Icon Color",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#icon-color"
+                  }
+                ]
+              },
+              "movie": {
+                "type": "string",
+                "title": "Movie",
+                "description": "Path or URL to movie file",
+                "property_order": 25,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Movie",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#movie"
+                  }
+                ]
+              },
+              "autoplay": {
+                "type": "boolean",
+                "title": "Autoplay",
+                "default": true,
+                "property_order": 26
+              },
+              "loop": {
+                "type": "boolean",
+                "title": "Loop",
+                "default": true,
+                "property_order": 27
+              },
+              "mute": {
+                "type": "boolean",
+                "title": "Mute",
+                "default": true,
+                "property_order": 28
+              },
+              "windowPosition": {
+                "type": "string",
+                "title": "Window Position",
+                "enum": [
+                  "center",
+                  "left",
+                  "right",
+                  "focus"
+                ],
+                "default": "center",
+                "property_order": 30,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Window Position",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#window-position"
+                  }
+                ]
+              },
+              "showSidebar": {
+                "type": "boolean",
+                "title": "Show Sidebar",
+                "description": "Overrides the sidebar visibility that would otherwise be determined by windowPosition for this step",
+                "property_order": 31,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Show Sidebar",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#show-sidebar"
+                  }
+                ]
+              },
+              "background": {
+                "type": "string",
+                "title": "Background",
+                "description": "Overrides the top-level background for this step. Can be an image source: path, url, name:, symbol:, or 'wallpaper' for the current desktop picture",
+                "default": "wallpaper",
+                "property_order": 32,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Background",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#background"
+                  },
+                  {
+                    "rel": "Image Sources",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/ImageSources.md"
+                  }
+                ]
+              },
+              "blur": {
+                "type": "boolean",
+                "title": "Blur",
+                "description": "Overrides the top-level blur setting for this step",
+                "default": false,
+                "property_order": 33,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Blur",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#blur"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "identifier"
+            ],
+            "links": [
+              {
+                "rel": "Detailed documentation: Message Step",
+                "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#message"
+              }
+            ]
+          },
+          {
+            "title": "Wallpaper Step",
+            "type": "object",
+            "defaultProperties": [
+              "kind",
+              "identifier",
+              "path"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "title": "Kind",
+                "enum": [
+                  "wallpaper"
+                ],
+                "default": "wallpaper",
+                "property_order": 1
+              },
+              "identifier": {
+                "type": "string",
+                "title": "Identifier",
+                "property_order": 2
+              },
+              "title": {
+                "title": "Title",
+                "property_order": 5,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "message": {
+                "title": "Message",
+                "property_order": 10,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "icon": {
+                "title": "Icon",
+                "property_order": 15,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "path": {
+                "type": "string",
+                "title": "Path",
+                "description": "Path to folder containing wallpaper images",
+                "default": "/Library/Desktop Pictures",
+                "property_order": 50,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Path",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#path-to-folder-of-images"
+                  }
+                ]
+              },
+              "mayKeepCurrent": {
+                "type": "boolean",
+                "title": "May Keep Current",
+                "description": "Allow user to continue without changing wallpaper",
+                "default": false,
+                "property_order": 55,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: May Keep Current",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#may-keep-current"
+                  }
+                ]
+              },
+              "windowPosition": {
+                "type": "string",
+                "title": "Window Position",
+                "enum": [
+                  "center",
+                  "left",
+                  "right",
+                  "focus"
+                ],
+                "default": "center",
+                "property_order": 60,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Window Position",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#window-position"
+                  }
+                ]
+              },
+              "showSidebar": {
+                "type": "boolean",
+                "title": "Show Sidebar",
+                "description": "Overrides the sidebar visibility that would otherwise be determined by windowPosition for this step",
+                "property_order": 61,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Show Sidebar",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#show-sidebar"
+                  }
+                ]
+              },
+              "background": {
+                "type": "string",
+                "title": "Background",
+                "description": "Overrides the top-level background for this step. Can be an image source: path, url, name:, symbol:, or 'wallpaper' for the current desktop picture",
+                "default": "wallpaper",
+                "property_order": 62,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Background",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#background"
+                  },
+                  {
+                    "rel": "Image Sources",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/ImageSources.md"
+                  }
+                ]
+              },
+              "blur": {
+                "type": "boolean",
+                "title": "Blur",
+                "description": "Overrides the top-level blur setting for this step",
+                "default": false,
+                "property_order": 63,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Blur",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#blur"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "identifier"
+            ],
+            "links": [
+              {
+                "rel": "Detailed documentation: Wallpaper Step",
+                "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#wallpaper"
+              }
+            ]
+          },
+          {
+            "title": "Open Step",
+            "type": "object",
+            "defaultProperties": [
+              "kind",
+              "identifier",
+              "item"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "title": "Kind",
+                "enum": [
+                  "open"
+                ],
+                "default": "open",
+                "property_order": 1
+              },
+              "identifier": {
+                "type": "string",
+                "title": "Identifier",
+                "property_order": 2
+              },
+              "title": {
+                "title": "Title",
+                "property_order": 5,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "message": {
+                "title": "Message",
+                "property_order": 10,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "icon": {
+                "title": "Icon",
+                "property_order": 15,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "item": {
+                "type": "string",
+                "title": "Item",
+                "description": "Item to open: absolute path, URL, or bundle identifier (REQUIRED)",
+                "property_order": 50,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Item",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#item"
+                  }
+                ]
+              },
+              "openAutomatically": {
+                "type": "boolean",
+                "title": "Open Automatically",
+                "description": "Open item automatically when step is displayed",
+                "default": false,
+                "property_order": 55,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Open Automatically",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#open-automatically"
+                  }
+                ]
+              },
+              "hide": {
+                "type": "boolean",
+                "title": "Hide",
+                "description": "Launch app but keep it hidden/in background",
+                "default": false,
+                "property_order": 60,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Hide",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#hide"
+                  }
+                ]
+              },
+              "buttonLabel": {
+                "title": "Button Label",
+                "description": "Custom label for the action button",
+                "property_order": 65,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Button Label",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#button-label"
+                  }
+                ]
+              },
+              "windowPosition": {
+                "type": "string",
+                "title": "Window Position",
+                "enum": [
+                  "center",
+                  "left",
+                  "right",
+                  "focus"
+                ],
+                "default": "center",
+                "property_order": 70,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Window Position",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#window-position"
+                  }
+                ]
+              },
+              "showSidebar": {
+                "type": "boolean",
+                "title": "Show Sidebar",
+                "description": "Overrides the sidebar visibility that would otherwise be determined by windowPosition for this step",
+                "property_order": 71,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Show Sidebar",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#show-sidebar"
+                  }
+                ]
+              },
+              "background": {
+                "type": "string",
+                "title": "Background",
+                "description": "Overrides the top-level background for this step. Can be an image source: path, url, name:, symbol:, or 'wallpaper' for the current desktop picture",
+                "default": "wallpaper",
+                "property_order": 72,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Background",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#background"
+                  },
+                  {
+                    "rel": "Image Sources",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/ImageSources.md"
+                  }
+                ]
+              },
+              "blur": {
+                "type": "boolean",
+                "title": "Blur",
+                "description": "Overrides the top-level blur setting for this step",
+                "default": false,
+                "property_order": 73,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Blur",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#blur"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "identifier",
+              "item"
+            ],
+            "links": [
+              {
+                "rel": "Detailed documentation: Open Step",
+                "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#open"
+              }
+            ]
+          },
+          {
+            "title": "Default App Step",
+            "type": "object",
+            "defaultProperties": [
+              "kind",
+              "identifier",
+              "bundle-id",
+              "urlScheme"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "title": "Kind",
+                "enum": [
+                  "defaultApp"
+                ],
+                "default": "defaultApp",
+                "property_order": 1
+              },
+              "identifier": {
+                "type": "string",
+                "title": "Identifier",
+                "property_order": 2
+              },
+              "title": {
+                "title": "Title",
+                "property_order": 5,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "message": {
+                "title": "Message",
+                "property_order": 10,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "icon": {
+                "title": "Icon",
+                "property_order": 15,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "bundle-id": {
+                "title": "Bundle Identifier",
+                "description": "App bundle identifier(s) to offer as choices",
+                "property_order": 50,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "Single Bundle ID"
+                  },
+                  {
+                    "type": "array",
+                    "title": "Multiple Bundle IDs",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Bundle Identifier",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#bundle-identifier"
+                  },
+                  {
+                    "rel": "Bundle Identifiers Reference",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Extras/BundleIdentifiers.md"
+                  }
+                ]
+              },
+              "urlScheme": {
+                "title": "URL Scheme",
+                "description": "URL scheme(s) to set default app for (e.g., http, mailto)",
+                "property_order": 55,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "Single URL Scheme"
+                  },
+                  {
+                    "type": "array",
+                    "title": "Multiple URL Schemes",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "links": [
+                  {
+                    "rel": "Detailed documentation: URL Scheme",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#url-scheme"
+                  }
+                ]
+              },
+              "uniformTypeIdentifier": {
+                "title": "Uniform Type Identifier",
+                "description": "UTI(s) to set default app for (e.g., public.text, com.adobe.pdf)",
+                "property_order": 60,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "Single UTI"
+                  },
+                  {
+                    "type": "array",
+                    "title": "Multiple UTIs",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Uniform Type Identifier",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#uniform-type-identifier"
+                  }
+                ]
+              },
+              "mayKeepCurrent": {
+                "type": "boolean",
+                "title": "May Keep Current",
+                "description": "Allow user to keep current default app",
+                "default": false,
+                "property_order": 65,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: May Keep Current",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#may-keep-current-1"
+                  }
+                ]
+              },
+              "windowPosition": {
+                "type": "string",
+                "title": "Window Position",
+                "enum": [
+                  "center",
+                  "left",
+                  "right",
+                  "focus"
+                ],
+                "default": "center",
+                "property_order": 70,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Window Position",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#window-position"
+                  }
+                ]
+              },
+              "showSidebar": {
+                "type": "boolean",
+                "title": "Show Sidebar",
+                "description": "Overrides the sidebar visibility that would otherwise be determined by windowPosition for this step",
+                "property_order": 71,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Show Sidebar",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#show-sidebar"
+                  }
+                ]
+              },
+              "background": {
+                "type": "string",
+                "title": "Background",
+                "description": "Overrides the top-level background for this step. Can be an image source: path, url, name:, symbol:, or 'wallpaper' for the current desktop picture",
+                "default": "wallpaper",
+                "property_order": 72,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Background",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#background"
+                  },
+                  {
+                    "rel": "Image Sources",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/ImageSources.md"
+                  }
+                ]
+              },
+              "blur": {
+                "type": "boolean",
+                "title": "Blur",
+                "description": "Overrides the top-level blur setting for this step",
+                "default": false,
+                "property_order": 73,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Blur",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#blur"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "identifier",
+              "bundle-id"
+            ],
+            "links": [
+              {
+                "rel": "Detailed documentation: Default App Step",
+                "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#default-app"
+              }
+            ]
+          },
+          {
+            "title": "Screen Sharing Step",
+            "type": "object",
+            "defaultProperties": [
+              "kind",
+              "identifier",
+              "bundle-id"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "title": "Kind",
+                "enum": [
+                  "screensharing"
+                ],
+                "default": "screensharing",
+                "property_order": 1
+              },
+              "identifier": {
+                "type": "string",
+                "title": "Identifier",
+                "property_order": 2
+              },
+              "title": {
+                "title": "Title",
+                "property_order": 5,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "message": {
+                "title": "Message",
+                "property_order": 10,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "icon": {
+                "title": "Icon",
+                "property_order": 15,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "bundle-id": {
+                "title": "Bundle Identifier",
+                "description": "App bundle identifier(s) requiring Screen Recording access",
+                "property_order": 50,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "Single Bundle ID"
+                  },
+                  {
+                    "type": "array",
+                    "title": "Multiple Bundle IDs",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Bundle Identifier",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#bundle-identifier-1"
+                  }
+                ]
+              },
+              "openAutomatically": {
+                "type": "boolean",
+                "title": "Open Automatically",
+                "description": "Open Screen Recording settings automatically",
+                "default": false,
+                "property_order": 55,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Open Automatically",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#open-automatically-1"
+                  }
+                ]
+              },
+              "windowPosition": {
+                "type": "string",
+                "title": "Window Position",
+                "description": "Works well with left or right positioning",
+                "enum": [
+                  "center",
+                  "left",
+                  "right",
+                  "focus"
+                ],
+                "default": "center",
+                "property_order": 60
+              },
+              "showSidebar": {
+                "type": "boolean",
+                "title": "Show Sidebar",
+                "description": "Overrides the sidebar visibility that would otherwise be determined by windowPosition for this step",
+                "property_order": 61,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Show Sidebar",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#show-sidebar"
+                  }
+                ]
+              },
+              "background": {
+                "type": "string",
+                "title": "Background",
+                "description": "Overrides the top-level background for this step. Can be an image source: path, url, name:, symbol:, or 'wallpaper' for the current desktop picture",
+                "default": "wallpaper",
+                "property_order": 62,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Background",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#background"
+                  },
+                  {
+                    "rel": "Image Sources",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/ImageSources.md"
+                  }
+                ]
+              },
+              "blur": {
+                "type": "boolean",
+                "title": "Blur",
+                "description": "Overrides the top-level blur setting for this step",
+                "default": false,
+                "property_order": 63,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Blur",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#blur"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "identifier",
+              "bundle-id"
+            ],
+            "links": [
+              {
+                "rel": "Detailed documentation: Screen Sharing Step",
+                "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#screen-recordingsharing"
+              }
+            ]
+          },
+          {
+            "title": "Dock Step",
+            "type": "object",
+            "defaultProperties": [
+              "kind",
+              "identifier",
+              "dockItems",
+              "dockAction"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "title": "Kind",
+                "enum": [
+                  "dock"
+                ],
+                "default": "dock",
+                "property_order": 1
+              },
+              "identifier": {
+                "type": "string",
+                "title": "Identifier",
+                "property_order": 2
+              },
+              "title": {
+                "title": "Title",
+                "property_order": 5,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "message": {
+                "title": "Message",
+                "property_order": 10,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "icon": {
+                "title": "Icon",
+                "property_order": 15,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "dockItems": {
+                "type": "array",
+                "title": "Dock Items",
+                "description": "List of items to add to Dock (paths, bundle IDs, URLs, relative paths)",
+                "property_order": 50,
+                "items": {
+                  "type": "string",
+                  "title": "Dock Item"
+                },
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Dock Items",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#dock-items"
+                  }
+                ]
+              },
+              "dockAction": {
+                "title": "Dock Action",
+                "description": "Options available to user for dock configuration",
+                "property_order": 55,
+                "default": "add",
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "keep",
+                      "add",
+                      "replace"
+                    ]
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "keep",
+                        "add",
+                        "replace"
+                      ]
+                    }
+                  }
+                ],
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Dock Action",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#dock-action"
+                  }
+                ]
+              },
+              "mayKeepCurrent": {
+                "type": "boolean",
+                "title": "May Keep Current",
+                "description": "Allow user to keep current dock (same effect as adding 'keep' to dockAction)",
+                "default": false,
+                "property_order": 60,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: May Keep Current",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#may-keep-current-2"
+                  }
+                ]
+              },
+              "windowPosition": {
+                "type": "string",
+                "title": "Window Position",
+                "enum": [
+                  "center",
+                  "left",
+                  "right",
+                  "focus"
+                ],
+                "default": "center",
+                "property_order": 65,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Window Position",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#window-position"
+                  }
+                ]
+              },
+              "showSidebar": {
+                "type": "boolean",
+                "title": "Show Sidebar",
+                "description": "Overrides the sidebar visibility that would otherwise be determined by windowPosition for this step",
+                "property_order": 66,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Show Sidebar",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#show-sidebar"
+                  }
+                ]
+              },
+              "background": {
+                "type": "string",
+                "title": "Background",
+                "description": "Overrides the top-level background for this step. Can be an image source: path, url, name:, symbol:, or 'wallpaper' for the current desktop picture",
+                "default": "wallpaper",
+                "property_order": 67,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Background",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#background"
+                  },
+                  {
+                    "rel": "Image Sources",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/ImageSources.md"
+                  }
+                ]
+              },
+              "blur": {
+                "type": "boolean",
+                "title": "Blur",
+                "description": "Overrides the top-level blur setting for this step",
+                "default": false,
+                "property_order": 68,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Blur",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#blur"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "identifier"
+            ],
+            "links": [
+              {
+                "rel": "Detailed documentation: Dock Step",
+                "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#dock"
+              }
+            ]
+          },
+          {
+            "title": "Script Step",
+            "type": "object",
+            "defaultProperties": [
+              "kind",
+              "identifier"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "title": "Kind",
+                "enum": [
+                  "script"
+                ],
+                "default": "script",
+                "property_order": 1
+              },
+              "identifier": {
+                "type": "string",
+                "title": "Identifier",
+                "property_order": 2
+              },
+              "title": {
+                "title": "Title",
+                "property_order": 5,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "message": {
+                "title": "Message",
+                "property_order": 10,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "icon": {
+                "title": "Icon",
+                "property_order": 15,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "item": {
+                "type": "string",
+                "title": "Item",
+                "description": "Item to open (script step is based on open step)",
+                "property_order": 20
+              },
+              "openAutomatically": {
+                "type": "boolean",
+                "title": "Open Automatically",
+                "default": false,
+                "property_order": 25
+              },
+              "buttonLabel": {
+                "title": "Button Label",
+                "property_order": 30,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "prepareScript": {
+                "type": "string",
+                "title": "Prepare Script",
+                "description": "Script executed when step is loaded and before display",
+                "property_order": 50,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Prepare Script",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/ScriptStep.md#prepare-script"
+                  }
+                ]
+              },
+              "activateScript": {
+                "type": "string",
+                "title": "Activate Script",
+                "description": "Script run immediately before showing step",
+                "property_order": 55,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Activate Script",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/ScriptStep.md#activate-script"
+                  }
+                ]
+              },
+              "buttonScript": {
+                "type": "string",
+                "title": "Button Script",
+                "description": "Script executed when action button is clicked",
+                "property_order": 60,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Action Button Script",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/ScriptStep.md#action-button-script"
+                  }
+                ]
+              },
+              "updateStatusScript": {
+                "type": "string",
+                "title": "Update Status Script",
+                "description": "Script to evaluate system state (exit 0 for success). Called repeatedly in polling cycle.",
+                "property_order": 65,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Update Status Script",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/ScriptStep.md#update-status-script"
+                  }
+                ]
+              },
+              "willContinueScript": {
+                "type": "string",
+                "title": "Will Continue Script",
+                "description": "Script called when Continue button is clicked (cleanup phase)",
+                "property_order": 70,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Will Continue Script",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/ScriptStep.md#will-continue-script"
+                  }
+                ]
+              },
+              "windowPosition": {
+                "type": "string",
+                "title": "Window Position",
+                "enum": [
+                  "center",
+                  "left",
+                  "right",
+                  "focus"
+                ],
+                "default": "center",
+                "property_order": 75,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Window Position",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#window-position"
+                  }
+                ]
+              },
+              "showSidebar": {
+                "type": "boolean",
+                "title": "Show Sidebar",
+                "description": "Overrides the sidebar visibility that would otherwise be determined by windowPosition for this step",
+                "property_order": 76,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Show Sidebar",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#show-sidebar"
+                  }
+                ]
+              },
+              "background": {
+                "type": "string",
+                "title": "Background",
+                "description": "Overrides the top-level background for this step. Can be an image source: path, url, name:, symbol:, or 'wallpaper' for the current desktop picture",
+                "default": "wallpaper",
+                "property_order": 77,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Background",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#background"
+                  },
+                  {
+                    "rel": "Image Sources",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/ImageSources.md"
+                  }
+                ]
+              },
+              "blur": {
+                "type": "boolean",
+                "title": "Blur",
+                "description": "Overrides the top-level blur setting for this step",
+                "default": false,
+                "property_order": 78,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Blur",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#blur"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "identifier"
+            ],
+            "links": [
+              {
+                "rel": "Detailed documentation: Script Step",
+                "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/ScriptStep.md"
+              }
+            ]
+          },
+          {
+            "title": "Agreement Step",
+            "type": "object",
+            "defaultProperties": [
+              "kind",
+              "identifier",
+              "title",
+              "message",
+              "document"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "title": "Kind",
+                "enum": [
+                  "agreement"
+                ],
+                "default": "agreement",
+                "property_order": 1
+              },
+              "identifier": {
+                "type": "string",
+                "title": "Identifier",
+                "property_order": 2
+              },
+              "title": {
+                "title": "Title",
+                "property_order": 5,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "message": {
+                "title": "Message",
+                "description": "Message text shown above the document (supports Markdown)",
+                "property_order": 10,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "icon": {
+                "title": "Icon",
+                "property_order": 15,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "document": {
+                "title": "Document",
+                "description": "Path to the agreement document to display (required). Can be a localizable dict of paths keyed by language code.",
+                "property_order": 20,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Document",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#path-to-document"
+                  }
+                ]
+              },
+              "buttonLabel": {
+                "title": "Button Label",
+                "description": "Label for the 'I agree' checkbox (localizable)",
+                "default": "I agree",
+                "property_order": 25,
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "title": "String"
+                  },
+                  {
+                    "type": "object",
+                    "title": "Localized",
+                    "description": "Dictionary with language codes as keys (e.g. en, de, fr, nl)",
+                    "properties": {
+                      "en": {
+                        "type": "string",
+                        "title": "English (default)"
+                      }
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Button Label",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#button-label-1"
+                  }
+                ]
+              },
+              "saveACopy": {
+                "type": "boolean",
+                "title": "Save a Copy",
+                "description": "Controls whether the 'Save a Copy' button is shown below the document",
+                "default": true,
+                "property_order": 30,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Save a Copy",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#save-a-copy"
+                  }
+                ]
+              },
+              "showLanguages": {
+                "type": "boolean",
+                "title": "Show Languages",
+                "description": "Controls whether the language picker is shown when multiple document translations are available",
+                "default": true,
+                "property_order": 35,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Show Languages",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#show-languages"
+                  }
+                ]
+              },
+              "windowPosition": {
+                "type": "string",
+                "title": "Window Position",
+                "enum": [
+                  "center",
+                  "left",
+                  "right",
+                  "focus"
+                ],
+                "default": "center",
+                "property_order": 75,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Window Position",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#window-position"
+                  }
+                ]
+              },
+              "showSidebar": {
+                "type": "boolean",
+                "title": "Show Sidebar",
+                "description": "Overrides the sidebar visibility that would otherwise be determined by windowPosition for this step",
+                "property_order": 76,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Show Sidebar",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#show-sidebar"
+                  }
+                ]
+              },
+              "background": {
+                "type": "string",
+                "title": "Background",
+                "description": "Overrides the top-level background for this step. Can be an image source: path, url, name:, symbol:, or 'wallpaper' for the current desktop picture",
+                "default": "wallpaper",
+                "property_order": 77,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Background",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#background"
+                  },
+                  {
+                    "rel": "Image Sources",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/ImageSources.md"
+                  }
+                ]
+              },
+              "blur": {
+                "type": "boolean",
+                "title": "Blur",
+                "description": "Overrides the top-level blur setting for this step",
+                "default": false,
+                "property_order": 78,
+                "links": [
+                  {
+                    "rel": "Detailed documentation: Blur",
+                    "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#blur"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "identifier"
+            ],
+            "links": [
+              {
+                "rel": "Detailed documentation: Agreement Step",
+                "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md#agreement-step"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "steps"
+  ],
+  "links": [
+    {
+      "rel": "Full documentation",
+      "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/SetupChecklist.md"
+    },
+    {
+      "rel": "Example plist",
+      "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Examples/com.jamf.setupchecklist.plist"
+    },
+    {
+      "rel": "Overview",
+      "href": "https://github.com/Jamf-Concepts/setup-checklist/blob/main/Profile/Overview.md"
+    }
+  ]
+}
