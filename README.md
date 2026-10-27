@@ -10,6 +10,9 @@ install prompts). Files are served with GitHub Pages:
   Apps that Installomator has no label for (macOS system apps, in-house tools) use a lowercase-hyphen name. A `-2021` suffix marks an older artwork version.
 - `setup-manager/` - banners, app icons and instruction screenshots used by the Jamf Setup Manager / Setup Checklist configuration.
 - `branding/` - CMU-Q logo.
+- `wallpapers/` - desktop wallpapers for managed Macs (`cmuq-wallpaper-<black|tartan|grey|red>-3840x2160.jpg`): tartan background with the
+  stacked CMU-Q wordmark, 3840x2160 (16:9), JPEG quality 85, 4:4:4. The wordmark sits in the left third, so the picture is safe to crop to
+  16:10 and 3:2 MacBook screens; Macs fill the screen, so no other sizes are needed.
 
 ## Notes
 - All product names, logos and icons belong to their respective owners and are used here only to identify the
