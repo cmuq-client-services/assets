@@ -11,7 +11,8 @@ install prompts). Files are served with GitHub Pages:
 - `setup-manager/` - banners, app icons and instruction screenshots used by the Jamf Setup Manager / Setup Checklist configuration.
 - `branding/` - CMU-Q logo.
 - `pkgs/` - installer packages that must be downloadable WITHOUT authentication by a Mac during Automated Device Enrollment (currently only the
-  Jamf Setup Manager package, Developer ID signed and notarized by Jamf; sha256 e0df46d5...9e9b for 1.4.7-652). Jamf Pro serves a manifest that points here.
+  Jamf Setup Manager package, Developer ID signed and notarized by Jamf; sha256 e0df46d5...9e9b for 1.4.7-652). The `-gh` suffix keeps the
+  file name unique in Jamf Pro, which refuses two package records with the same file name.. Jamf Pro serves a manifest that points here.
 - `wallpapers/` - desktop wallpapers for managed Macs (`cmuq-wallpaper-<black|tartan|grey|red>-3840x2160.jpg`): tartan background with the
   stacked CMU-Q wordmark, 3840x2160 (16:9), JPEG quality 85, 4:4:4. The wordmark sits in the left third, so the picture is safe to crop to
   16:10 and 3:2 MacBook screens; Macs fill the screen, so no other sizes are needed.
